@@ -1,0 +1,32 @@
+<h2>Вход / Регистрация</h2>
+<input id="username" placeholder="Имя">
+<input id="password" type="password" placeholder="Пароль">
+<button onclick="register()">Регистрация</button>
+<button onclick="login()">Вход</button>
+
+<script>
+async function register(){
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  const res = await fetch('/api/register',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({username,password})
+  });
+  alert((await res.json()).message);
+}
+async function login(){
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  const res = await fetch('/api/login',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({username,password})
+  });
+  const data = await res.json();
+  if(data.error){ alert(data.error); return; }
+  localStorage.setItem('user',JSON.stringify(data));
+  alert("Вход успешен");
+  window.location.href='/index.html';
+}
+</script>

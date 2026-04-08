@@ -1,0 +1,18 @@
+<h2>Админка — Добавление товаров</h2>
+<input id="name" placeholder="Название">
+<input id="price" type="number" placeholder="Цена">
+<button onclick="addProduct()">Добавить</button>
+
+<script>
+const user = JSON.parse(localStorage.getItem('user'));
+async function addProduct(){
+  const name = document.getElementById('name').value;
+  const price = Number(document.getElementById('price').value);
+  const res = await fetch('/api/products',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({product:{name,price},admin:user.isAdmin})
+  });
+  alert((await res.json()).message);
+}
+</script>

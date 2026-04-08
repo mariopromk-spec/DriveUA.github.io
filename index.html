@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>DriveUA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>DriveUA</h1>
+  <input type="text" id="search" placeholder="Поиск запчастей...">
+  <button onclick="viewCart()">🛒 (<span id="cart-count">0</span>)</button>
+  <a href="login.html">Вход</a>
+</header>
+
+<main>
+  <div id="products"></div>
+</main>
+
+<div id="cart" class="hidden">
+  <h2>Корзина</h2>
+  <div id="cart-items"></div>
+  <button onclick="checkout()">Оформить заказ</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
